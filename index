@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuentro Universitario Romántico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #output {
+            margin-bottom: 10px;
+        }
+        .option {
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <button class="button" onclick="reiniciarJuego()">Reiniciar Juego</button>
+    <script>
+        function reiniciarJuego() {
+            comenzarJuego();
+        }
+
+        function comenzarJuego() {
+            document.getElementById("output").innerHTML = ""; // Limpiar la salida antes de comenzar el juego nuevamente
+            output("Bienvenido al juego de texto 'Encuentro Universitario Romántico'.");
+            setTimeout(function() {
+                output("Estás paseando por el campus universitario cuando de repente te encuentras en una encrucijada.");
+                setTimeout(function() {
+                    output("Tienes que tomar una decisión...");
+                    setTimeout(function() {
+                        output("Elige un camino:");
+                        addOption("Izquierda", "Estás frente a la biblioteca.", "library.jpg", function() {
+                            output("Has elegido el camino de la izquierda.");
+                            setTimeout(function() {
+                                output("Te encuentras con el edificio de la biblioteca. ¿Deseas entrar a estudiar o seguir explorando?");
+                                addOption("Estudiar", "Decidiste entrar a la biblioteca a estudiar.", "titor.jpg", function() {
+                                    output("Decidiste entrar a la biblioteca a estudiar.");
+                                    setTimeout(function() {
+                                        output("Encuentras un lugar tranquilo y comienzas a repasar tus apuntes.");
+                                        setTimeout(function() {
+                                            output("De repente, tus ojos se encuentran con los de alguien inusual sentado en la mesa de al lado.");
+                                            setTimeout(function() {
+                                                output("Es un toro enorme con una expresión amigable.");
+                                                setTimeout(function() {
+                                                    output("Antes de acercarse a ti, lo miras de pies a cabeza con la vista. Su pelaje cobrizo y su musculatura te hipnotiza.");
+                                                    setTimeout(function() {
+                                                        output("De golpe despiertas de tu fantasía romántica.");
+                                                        setTimeout(function() {
+                                                            output("Te sonríe amablemente y se presenta: 'Hola, soy Titor. ¿Qué tal si compartimos una mesa, para estudiar juntos?'");
+                                                            setTimeout(finalRomantico, 1000);
+                                                        }, 1000);
+                                                    }, 2000);
+                                                }, 2000);
+                                            }, 1000);
+                                        }, 1000);
+                                    }, 1000);
+                                });
+                                addOption("Explorar", "Decidiste seguir explorando.", "unifront.jpg", function() {
+                                    output("Decidiste seguir explorando.");
+                                    setTimeout(finalBueno, 1000);
+                                });
+                            }, 1000);
+                        });
+                        addOption("Derecha", "Estás frente al edificio de ciencias.", "unibulls.jpg", function() {
+                            output("Has elegido el camino de la derecha.");
+                            setTimeout(function() {
+                                output("Te encuentras con el edificio de ciencias. ¿Deseas asistir a una conferencia o seguir adelante?");
+                                addOption("Conferencia", "Decidiste asistir a la conferencia.", "conference.jpg", function() {
+                                    output("Decidiste asistir a la conferencia.");
+                                    var nombreInteres = prompt("¿Cómo quieres llamar a este segundo interés romántico? ");
+                                    output("Decisión: " + nombreInteres);
+                                    setTimeout(function() {
+                                        output("Después de la conferencia, te acercas y entablas una conversación con " + nombreInteres + ".");
+                                        setTimeout(finalRomantico, 1000);
+                                    }, 1000);
+                                });
+                                addOption("Adelante", "Decidiste seguir adelante.", "forward.jpg", function() {
+                                    output("Decidiste seguir adelante.");
+                                    setTimeout(finalBueno, 1000);
+                                });
+                            }, 1000);
+                        });
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }
+
+        function output(message) {
+            var outputDiv = document.getElementById("output");
+            outputDiv.innerHTML += "<p>" + message + "</p>";
+        }
+
+        function addOption(label, description, imageUrl, callback) {
+            var optionDiv = document.createElement("div");
+            optionDiv.className = "option";
+            optionDiv.innerHTML = "<h3>" + label + "</h3><p>" + description + "</p>";
+            var image = document.createElement("img");
+            image.src = imageUrl;
+            image.alt = label;
+            image.style.maxWidth = "200px";
+            optionDiv.appendChild(image);
+            var button = document.createElement("button");
+            button.innerHTML = "Elegir " + label;
+            button.className = "button";
+            button.onclick = callback;
+            optionDiv.appendChild(button);
+            document.getElementById("output").appendChild(optionDiv);
+            optionDiv.scrollIntoView(); // Desplazar la ventana de visualización al elemento recién agregado
+        }
+
+        function finalRomantico() {
+            output("¡Felicidades! Has tenido un encuentro romántico en el campus universitario.");
+            setTimeout(function() {
+                output("Fin del juego.");
+            }, 1000);
+        }
+
+        function finalBueno() {
+            output("¡Qué divertida aventura universitaria has tenido!");
+            setTimeout(function() {
+                output("Aunque no haya habido un encuentro romántico, has disfrutado de tu tiempo en el campus.");
+                setTimeout(function() {
+                    output("Fin del juego.");
+                }, 1000);
+            }, 1000);
+        }
+
+        comenzarJuego();
+    </script>
+</body>
+</html>
